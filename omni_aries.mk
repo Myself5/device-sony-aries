@@ -79,7 +79,7 @@ PRODUCT_COPY_FILES += \
     device/sony/aries/recovery/root/sbin/zip:recovery/root/sbin/zip
 
 
-+PRODUCT_NAME := omni_aries
+PRODUCT_NAME := omni_aries
 PRODUCT_DEVICE := aries
 PRODUCT_MODEL := Xperia Z3 Compact
 PRODUCT_BRAND := Sony
