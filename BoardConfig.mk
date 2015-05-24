@@ -24,6 +24,6 @@ BUILD_KERNEL := true
 
 MR_DPI := hdpi
 MR_DPI_FONT := 216
-MR_KEXEC_MEM_MIN := 0x34300000
+MR_KEXEC_MEM_MIN := 0x0ff00000
 
 PRODUCT_VENDOR_KERNEL_HEADERS += device/sony/aries/kernel-headers
