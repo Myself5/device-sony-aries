@@ -12,8 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET_KERNEL_CONFIG := aosp_shinano_aries_defconfig
+# Kernel
 TARGET_KERNEL_SOURCE := kernel/sony/msm
+
+# Inherit AOSP Shinano common device parts
+$(call inherit-product, device/sony/aries/aosp_d5803.mk)
+
+# Inherit Omni Shinano common device parts
+$(call inherit-product, device/sony/shinano-common/device_omni.mk)
 
 # Inherit Omni GSM telephony parts
 $(call inherit-product, vendor/omni/config/gsm.mk)
@@ -21,76 +27,16 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 # Inherit Omni product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
-DEVICE_PACKAGE_OVERLAYS += \
-    device/sony/aries/overlay
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
-$(call inherit-product-if-exists, device/sony/shinano-common/device.mk)
-$(call inherit-product-if-exists, vendor/sony/aries/aries-vendor.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
-#$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk)
-
+# Recovery
 PRODUCT_COPY_FILES += \
-    device/sony/aries/rootdir/system/etc/BCM4339.hcd:system/etc/firmware/BCM43xx.hcd \
-    device/sony/aries/rootdir/system/etc/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal \
-    device/sony/aries/rootdir/system/etc/sensors_calib.conf:system/etc/sensors_calib.conf \
-    device/sony/aries/rootdir/system/etc/sensor_def_qcomdev.conf:system/etc/sensor_def_qcomdev.conf \
-    device/sony/aries/rootdir/system/etc/thermanager.xml:system/etc/thermanager.xml \
-    device/sony/aries/rootdir/system/etc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    device/sony/aries/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
+    device/sony/aries/recovery/root/etc/bootrec-device:recovery/root/etc/bootrec-device
 
-PRODUCT_COPY_FILES += \
-    device/sony/aries/rootdir/system/etc/tfa98xx/coldboot.patch:/system/etc/tfa98xx/coldboot.patch \
-    device/sony/aries/rootdir/system/etc/tfa98xx/TFA9890.patch:/system/etc/tfa98xx/TFA9890.patch \
-    device/sony/aries/rootdir/system/etc/tfa98xx/TFA9890_top.config:/system/etc/tfa98xx/TFA9890_top.config \
-    device/sony/aries/rootdir/system/etc/tfa98xx/TFA9890_btm.config:/system/etc/tfa98xx/TFA9890_btm.config \
-    device/sony/aries/rootdir/system/etc/tfa98xx/btm.speaker:/system/etc/tfa98xx/btm.speaker \
-    device/sony/aries/rootdir/system/etc/tfa98xx/top.speaker:/system/etc/tfa98xx/top.speaker \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeaker_top.preset:/system/etc/tfa98xx/HiFiSpeaker_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeaker_btm.preset:/system/etc/tfa98xx/HiFiSpeaker_btm.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerRing_top.preset:/system/etc/tfa98xx/HiFiSpeakerRing_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerRing_btm.preset:/system/etc/tfa98xx/HiFiSpeakerRing_btm.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerSforce_top.preset:/system/etc/tfa98xx/HiFiSpeakerSforce_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerSforce_btm.preset:/system/etc/tfa98xx/HiFiSpeakerSforce_btm.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallSpeaker_top.preset:/system/etc/tfa98xx/VoiceCallSpeaker_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallSpeaker_btm.preset:/system/etc/tfa98xx/VoiceCallSpeaker_btm.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/FMSpeaker_top.preset:/system/etc/tfa98xx/FMSpeaker_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/FMSpeaker_btm.preset:/system/etc/tfa98xx/FMSpeaker_btm.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeaker_top.eq:/system/etc/tfa98xx/HiFiSpeaker_top.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeaker_btm.eq:/system/etc/tfa98xx/HiFiSpeaker_btm.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerRing_top.eq:/system/etc/tfa98xx/HiFiSpeakerRing_top.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerRing_btm.eq:/system/etc/tfa98xx/HiFiSpeakerRing_btm.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerSforce_top.eq:/system/etc/tfa98xx/HiFiSpeakerSforce_top.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/HiFiSpeakerSforce_btm.eq:/system/etc/tfa98xx/HiFiSpeakerSforce_btm.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallSpeaker_top.eq:/system/etc/tfa98xx/VoiceCallSpeaker_top.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallSpeaker_btm.eq:/system/etc/tfa98xx/VoiceCallSpeaker_btm.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/FMSpeaker_top.eq:/system/etc/tfa98xx/FMSpeaker_top.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/FMSpeaker_btm.eq:/system/etc/tfa98xx/FMSpeaker_btm.eq \
-    device/sony/aries/rootdir/system/etc/tfa98xx/TFA9890_Receiver.config:/system/etc/tfa98xx/TFA9890_Receiver.config \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallEarpice_top.preset:/system/etc/tfa98xx/VoiceCallEarpice_top.preset \
-    device/sony/aries/rootdir/system/etc/tfa98xx/VoiceCallEarpice_top.eq:/system/etc/tfa98xx/VoiceCallEarpice_top.eq
-
-# MultiROM Recovery
-PRODUCT_COPY_FILES += \
-    device/sony/aries/recovery/root/etc/bootrec-device:recovery/root/etc/bootrec-device \
-    device/sony/aries/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
-    device/sony/aries/recovery/root/sbin/zip:recovery/root/sbin/zip
-
-
+# Override Product Name for OmniROM
 PRODUCT_NAME := omni_aries
-PRODUCT_DEVICE := aries
 PRODUCT_MODEL := Xperia Z3 Compact
-PRODUCT_BRAND := Sony
-PRODUCT_MANUFACTURER := Sony
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=z3c \
 
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=320
+# Assert
+TARGET_OTA_ASSERT_DEVICE := D5803,D5833,z3c,aries
