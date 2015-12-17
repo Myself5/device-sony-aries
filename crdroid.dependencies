@@ -1,0 +1,49 @@
+[
+  {
+    "repository":   "android_device_sony_shinano",
+    "target_path":  "device/sony/shinano",
+    "revision":     "6.0.0-test"
+  },
+  {
+    "remote":       "github",
+    "repository":   "sonyxperiadev/thermanager",
+    "target_path":  "hardware/sony/thermanager",
+    "revision":     "master"
+  },
+  {
+    "remote":       "github",
+    "repository":   "sonyxperiadev/timekeep",
+    "target_path":  "hardware/sony/timekeep",
+    "revision":     "master"
+  },
+  {
+    "remote":       "github",
+    "repository":   "sonyxperiadev/macaddrsetup",
+    "target_path":  "hardware/sony/macaddrsetup",
+    "revision":     "master"
+  },
+  {
+    "remote":       "github",
+    "repository":   "alviteri/kernel",
+    "target_path":  "kernel/sony/msm",
+    "revision":     "6.0.0"
+  },
+  {
+    "remote":       "github",
+    "repository":   "alviteri/platform-hardware-qcom-power",
+    "target_path":  "hardware/qcom/power2",
+    "revision":     "master"
+  },
+  {
+    "remote":       "github",
+    "repository":   "alviteri/vendor-sony-blobs",
+    "target_path":  "vendor",
+    "revision":     "master"
+  },
+  {
+    "remote":       "github",
+    "repository":   "alviteri/vendor-qcom-proprietary",
+    "target_path":  "vendor/qcom/proprietary",
+    "revision":     "master"
+  }
+]
